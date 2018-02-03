@@ -11,6 +11,9 @@ class ServiceUser(ServicePagination):
         self._count = db.session.query(User).count()
         self._set_max_page()
 
+    def get_count(self):
+        return self._count
+
     def set_row_block(self, page_block):
         self._row_block = page_block
         self._set_max_page()
