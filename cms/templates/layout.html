@@ -9,6 +9,8 @@
 
         <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ url_for('static',filename='css/dashboard.css') }}" rel="stylesheet">
+        <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+
 
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -47,5 +49,51 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $(function() {
+                    var dates = $(".datepicker").datepicker({
+                        showOn : "both",
+                        buttonImageOnly : true,
+                        showOptions : {
+                            direction : 'horizontal'
+                        },
+                        buttonImage : "{{ url_for('static',filename='images/ico_cal.gif') }}",
+                        buttonImageOnly : true,
+                        buttonText : "Select date",
+                        dateFormat : 'yy-mm-dd',
+                        prevText : '이전 달',
+                        nextText : '다음 달',
+                        monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
+                        monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
+                        dayNames : [ '일', '월', '화', '수', '목', '금', '토' ],
+                        dayNamesShort : [ '일', '월', '화', '수', '목', '금', '토' ],
+                        dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+                        showOtherMonths : true,
+                        showMonthAfterYear : true,
+                        yearSuffix : '년',
+                        closeText : '닫기',
+                        showButtonPanel : true,
+
+                        onSelect : function(selectedDate) {
+                            var option = "";
+                            var instance = "";
+
+                            if (this.id == "fromDate") {
+                                option = this.id == "fromDate" ? "minDate" : "maxDate";
+                            } else {
+                                return;
+                            }
+                            option, instance = $(this).data("datepicker"), date = $.datepicker.parseDate(instance.settings.dateFormat
+                                    || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
+                            dates.not(this).datepicker("option", option, date);
+                        }
+                    });
+                    $(".ui-datepicker-trigger").css("vertical-align", "middle");
+                });
+            });
+</script>
+
     </body>
 </html>
