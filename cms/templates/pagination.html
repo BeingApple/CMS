@@ -1,0 +1,19 @@
+<nav class="nav_page">
+    <ul class="pagination">
+        <li>
+            <a href="{{ url }}/{{ nowPage - 1 }}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+
+        {% for page in pages %}
+            <li {% if page == nowPage %} class="active" {% endif %}><a href="{{ url }}/{{ page }}">{{ page }}</a></li>
+        {% endfor %}
+
+        <li>
+            <a href="{{ url }}/{{ nowPage + 1 }}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
