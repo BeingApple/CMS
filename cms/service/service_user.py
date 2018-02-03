@@ -24,8 +24,7 @@ class ServiceUser(ServicePagination):
     def get_pagination(self, url, page=1):
         self._set_limit(page)
         self._set_page_start_end()
-        print(self._page_start)
-        print(self._page_end)
+
         pages = range(self._page_start, self._page_end + 1)
 
         link = Markup(render_template("pagination.html", url=url, pages=pages,
