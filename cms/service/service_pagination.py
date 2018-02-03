@@ -5,7 +5,7 @@ import abc
 class ServicePagination:
     _count = 0
     _page = 1
-    _row_block = 10
+    _row_block = 20
     _max_page = 0
     _limit_start = 0
     _limit_end = 0
