@@ -32,4 +32,3 @@ class ServiceUser(ServicePagination):
                                       nowPage=self._page))
         pagination = {"link": link, "skip": self._limit_start}
         return pagination
-
