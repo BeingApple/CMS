@@ -18,10 +18,68 @@
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <h1 class="page-header">고객 목록</h1>
         <div class="row placeholders">
+            <form method="post">
+                <table class="table table-bordered">
+                    <colgroup>
+                        <col width="150px;">
+                        <col>
+                    </colgroup>
 
+                    <tbody>
+                        <tr>
+                            <th class="active text-center">
+                                <label for="store">매장</label>
+                            </th>
+                            <td>
+                                <select class="form-control" id="store" name="store">
+                                    <option value="">전체</option>
+                                    {% for store in stores %}
+                                        <option value="{{ store.id }}" {% if store.id == search.store %} selected="selected" {% endif %}>{{ store.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="active text-center"><label for="fromDate">검색기간</label></th>
+                            <td colspan="3">
+                                <input type="text" id="fromDate" name="start_date" class="datepicker" value="{{ search.start_date }}" /> ~ <input type="text" id="toDate" class="datepicker" name="end_date" value="{{ search.end_date }}" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="text-center">
+                    <button type="submit" class="btn btn-primary">검색</button>
+                </p>
+            </form>
         </div>
 
+        {% if retention > 0 %}
+            <h2 class="sub-header">매장 통계</h2>
+            <table class="table table-bordered">
+                <colgroup>
+                    <col width="150px;">
+                    <col>
+                    <tbody>
+                        <tr>
+                            <th class="active text-center">
+                                <label for="store">재방문율</label>
+                            </th>
+                            <td>{{ retention }}%</td>
+                        </tr>
+                        <tr>
+                            <th class="active text-center">
+                                <label for="store">기간 내 방문자</label>
+                            </th>
+                            <td>{{ order_count }}명</td>
+                        </tr>
+                    </tbody>
+                </colgroup>
+            </table>
+        {% endif %}
+
         <h2 class="sub-header">고객 목록</h2>
+
+        <p>{{ count }}건의 검색결과가 있습니다.</p>
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
