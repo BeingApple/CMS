@@ -16,6 +16,16 @@
 
 {% block content %}
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <!-- flash message -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
         <h1 class="page-header">고객 목록</h1>
         <div class="row placeholders">
             <form method="post">
@@ -41,8 +51,20 @@
                         </tr>
                         <tr>
                             <th class="active text-center"><label for="fromDate">검색기간</label></th>
-                            <td colspan="3">
+                            <td class="date_wrap">
                                 <input type="text" id="fromDate" name="start_date" class="datepicker" value="{{ search.start_date }}" /> ~ <input type="text" id="toDate" class="datepicker" name="end_date" value="{{ search.end_date }}" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="active text-center">
+                                <label for="store">페이지 줄 수</label>
+                            </th>
+                            <td>
+                                <select class="form-control" id="row_block" name="row_block">
+                                    {% for row_count in row_block_list %}
+                                        <option value="{{ row_count }}" {% if row_count == search.row_block %} selected="selected" {% endif %}>{{ row_count }}개</option>
+                                    {% endfor %}
+                                </select>
                             </td>
                         </tr>
                     </tbody>
