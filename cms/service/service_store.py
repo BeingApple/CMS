@@ -35,7 +35,7 @@ class ServiceStore:
         self.set_retention_count(store_id, start_date, end_date)
         self.set_order_count(store_id, start_date, end_date)
 
-        if self.order_count > 0:
+        try:
             return round((self.retention_count / self.order_count) * 100, 2)
-        else:
+        except ZeroDivisionError:
             return 0
