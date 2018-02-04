@@ -28,8 +28,6 @@ class ServiceUser(ServicePagination):
         pages = range(self._page_start, self._page_end + 1)
         search_string = urllib.parse.urlencode(search)
 
-        print(search_string)
-
         link = Markup(render_template("pagination.html", url=url, pages=pages,
                                       search_string=search_string, nowPage=self._page))
         pagination = {"link": link, "skip": self._limit_start}
