@@ -14,10 +14,6 @@ class ServiceUser(ServicePagination):
     def get_count(self):
         return self._count
 
-    def set_row_block(self, page_block):
-        self._row_block = page_block
-        self._set_max_page()
-
     def get_customer_list(self, page=1):
         self._set_limit(page)
 

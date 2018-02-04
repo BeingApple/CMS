@@ -18,6 +18,13 @@ class ServicePagination:
     def __init__(self):
         self._set_count()
 
+    def set_row_block(self, row_block):
+        self._row_block = row_block
+        self._set_max_page()
+
+    def get_row_block(self):
+        return self._row_block
+
     @abc.abstractmethod
     def _set_count(self):
         pass
