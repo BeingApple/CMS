@@ -26,6 +26,10 @@ http://13.125.115.234/customer_list/
   - SQLAlchemy-Utils==0.32.21
   - uWSGI==2.0.15
   - Werkzeug==0.14.1
+  
+### 서버
+실제 작동중인 서버는 AWS EC2에서 uWSGI + nginx 로 구동하였습니다.
+DB는 RDS의 PostgreSQL 9.6.5 입니다
 
 ### 파일 설명
 - cms
@@ -44,6 +48,8 @@ http://13.125.115.234/customer_list/
   - 설정 파일
 - tests
   - pytest 파일
+- wsgi.py
+  - uWSGI 에서 실행을 위해 사용하는 파일
 
 ### pytest
 최상위 디렉토리에서 pytest를 실행해주시면 됩니다. 현재 /customer_list/ 페이지와 /customer_list/30/ 페이지를 테스트 하게 되어있습니다.
