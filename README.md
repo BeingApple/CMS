@@ -49,7 +49,7 @@ DB는 RDS의 PostgreSQL 9.6.5 입니다
 - tests
   - pytest 파일
 - wsgi.py
-  - uWSGI 에서 실행을 위해 사용하는 파일
+  - uWSGI 에서 실행을 위해 사용하는 파일
 
 ### pytest
 최상위 디렉토리에서 pytest를 실행해주시면 됩니다. 현재 /customer_list/ 페이지와 /customer_list/30/ 페이지를 테스트 하게 되어있습니다.
